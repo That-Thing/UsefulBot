@@ -15,6 +15,6 @@ This bot is still in development, and if you encounter any problems feel free to
   <img src="https://discordbots.org/api/widget/509012657890918430.svg" alt="Useful Bot" />
 </a>
 
-<a href="https://discordapp.com/oauth2/authorize?client_id=509012657890918430&scope=bot&permissions=8" </a> <h4>Invite the bot here:</h4>
+<a href="https://discordapp.com/oauth2/authorize?client_id=509012657890918430&scope=bot&permissions=8"><h4>Invite the bot</h4></a> 
 
 <img src="usefulbot.webp" alt="Useful Bot">
