@@ -1,0 +1,8 @@
+discord.py
+pyfiglet
+asyncio
+praw
+utils
+json
+time
+random
