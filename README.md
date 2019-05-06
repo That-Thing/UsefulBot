@@ -10,7 +10,7 @@ Useful bot has all sorts of commands including:<br>
   <li>Image commands (!!cat, !!meme, etc.)</li>
 </ul>
 
-This bot is still in development, and if you encounter any problems feel free to shoot me a DM. Sen#0069
+This bot is still in development, and if you encounter any problems feel free to shoot me a DM.
 
 <a href="https://discordbots.org/bot/509012657890918430" >
   <img src="https://discordbots.org/api/widget/509012657890918430.svg" alt="Useful Bot" />
