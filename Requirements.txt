@@ -8,6 +8,7 @@ time
 random
 pylint
 
+urbandictionary (Download from PyPi and then replace urbandictionary.py with the one from the github repo https://github.com/bocong/urbandictionary-py)
 
 
 
