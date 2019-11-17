@@ -183,4 +183,4 @@ if __name__ == "__main__":
 
 
 #requests.post('https://cleverbot.io/1.0/create', json={'user':user, 'key':key, 'nick':'Useful Bot'})
-bot.run('NTM4MzgyODAwMjY5ODY5MDY3.Xc8-aA.bbIoF-AuiqEQOK5THFekZIhjlDY')
+bot.run('TOKEN HERE')
