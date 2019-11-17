@@ -17,7 +17,7 @@ class invite:
     @commands.command()
     @commands.cooldown(rate=1, per=2.0)
     async def invite(self):
-        await self.bot.say('An invite to a server')
+        await self.bot.say('https://discord.gg/PEqVQCu')
 
 
 

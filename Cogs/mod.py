@@ -15,7 +15,7 @@ class mod:
     @commands.cooldown(rate=1, per=2.0)
     async def kick(self, ctx, userName: discord.User):
         colors = [0xff0000, 0xff8100, 0xfdff00, 0x15ff00, 0x15ff00, 0x0045ff, 0x9600ff, 0xff00b4]
-        if ctx.message.author.server_permissions.administrator or ctx.message.author.id == 'Your User ID':
+        if ctx.message.author.server_permissions.administrator or ctx.message.author.id == '204721061411946496':
             try:
                 await self.bot.kick(userName)
                 embed=discord.Embed(title="Kick", description="{} Has been kicked from {}.".format (userName.name, ctx.message.server.name), color=random.choice(colors))
@@ -35,7 +35,7 @@ class mod:
         # if not member:
         #     await ctx.send('Specify member')
             # return
-        if ctx.message.author.server_permissions.administrator or ctx.message.author.id == 'Your User ID':
+        if ctx.message.author.server_permissions.administrator or ctx.message.author.id == '204721061411946496':
             try:
                 await self.bot.ban(userName)
                 embed=discord.Embed(title="Ban", description="{} Has been banned from {}.".format (userName.name, ctx.message.server.name), color=random.choice(colors))
@@ -61,7 +61,7 @@ class mod:
         number = int(number)
         async for x in self.bot.logs_from(ctx.message.channel, limit = number):
             mgs.append(x)
-        if ctx.message.author.server_permissions.administrator or ctx.message.author.id == 'Your User ID':
+        if ctx.message.author.server_permissions.administrator or ctx.message.author.id == '204721061411946496':
             try:
                 await self.bot.delete_messages(mgs)
                 embed=discord.Embed(title="Clear", description="{} messages have been deleted.".format (number), color=random.choice(colors))
@@ -88,7 +88,7 @@ class mod:
             output += ' '
             embed = discord.Embed(title="Announcement", description=output, color=0xfd0000)
             embed.set_footer(text="Requested by {}".format(ctx.message.author))
-        if ctx.message.author.server_permissions.administrator or ctx.message.author.id == 'Your User ID':
+        if ctx.message.author.server_permissions.administrator or ctx.message.author.id == '204721061411946496':
             try:
                 await self.bot.say(embed=embed)
                 await asyncio.sleep(3)
@@ -104,7 +104,7 @@ class mod:
     @commands.command(pass_context = True)
     @commands.cooldown(rate=1, per=2.0)
     async def mute(self, ctx, member: discord.Member):
-        if ctx.message.author.server_permissions.administrator or ctx.message.author.id == 'Your User ID':
+        if ctx.message.author.server_permissions.administrator or ctx.message.author.id == '204721061411946496':
             role = discord.utils.get(member.server.roles, name='Muted')
             if not member:
                 await ctx.send('Specify member')
@@ -126,7 +126,7 @@ class mod:
     @commands.command(pass_context = True)
     @commands.cooldown(rate=1, per=2.0)
     async def nickname(self, ctx, userName: discord.User, *args):
-         if ctx.message.author.server_permissions.administrator or ctx.message.author.id == 'Your User ID':
+         if ctx.message.author.server_permissions.administrator or ctx.message.author.id == '204721061411946496':
             output = ""
             for word in args:
                 output += word

@@ -48,7 +48,7 @@ print('loading')
 @bot.event
 async def on_ready():
     os.system('cls' if os.name == 'nt' else 'clear')
-    await bot.change_presence(game=discord.Game(name='New commands added | !!help', url='https://www.twitch.tv/monstercat',type=1))
+    await bot.change_presence(game=discord.Game(name='Being useful | !!help', url='https://www.twitch.tv/monstercat',type=1))
     print("  ")
     print("                  ██╗   ██╗███████╗███████╗███████╗██╗   ██╗██╗         ██████╗  ██████╗ ████████╗")
     print("                  ██║   ██║██╔════╝██╔════╝██╔════╝██║   ██║██║         ██╔══██╗██╔═══██╗╚══██╔══╝")
@@ -61,40 +61,45 @@ async def on_ready():
 
 @bot.command(pass_context=True)
 async def cls(ctx):
-    if ctx.message.author.id == 'Your User ID':
+    if ctx.message.author.id == '204721061411946496':
         await bot.say(":ballot_box_with_check: **Console cleared!**")
         os.system('cls' if os.name == 'nt' else 'clear')
-    print("                  ██╗   ██╗███████╗███████╗███████╗██╗   ██╗██╗         ██████╗  ██████╗ ████████╗")
-    print("                  ██║   ██║██╔════╝██╔════╝██╔════╝██║   ██║██║         ██╔══██╗██╔═══██╗╚══██╔══╝")
-    print("                  ██║   ██║███████╗█████╗  █████╗  ██║   ██║██║         ██████╔╝██║   ██║   ██║   ")
-    print("                  ██║   ██║╚════██║██╔══╝  ██╔══╝  ██║   ██║██║         ██╔══██╗██║   ██║   ██║   ")
-    print("                  ╚██████╔╝███████║███████╗██║     ╚██████╔╝███████╗    ██████╔╝╚██████╔╝   ██║   ")
-    print("                   ╚═════╝ ╚══════╝╚══════╝╚═╝      ╚═════╝ ╚══════╝    ╚═════╝  ╚═════╝    ╚═╝   ")
-    print(" ")
-    print("                                                     Console Cleared")
+        print("                  ██╗   ██╗███████╗███████╗███████╗██╗   ██╗██╗         ██████╗  ██████╗ ████████╗")
+        print("                  ██║   ██║██╔════╝██╔════╝██╔════╝██║   ██║██║         ██╔══██╗██╔═══██╗╚══██╔══╝")
+        print("                  ██║   ██║███████╗█████╗  █████╗  ██║   ██║██║         ██████╔╝██║   ██║   ██║   ")
+        print("                  ██║   ██║╚════██║██╔══╝  ██╔══╝  ██║   ██║██║         ██╔══██╗██║   ██║   ██║   ")
+        print("                  ╚██████╔╝███████║███████╗██║     ╚██████╔╝███████╗    ██████╔╝╚██████╔╝   ██║   ")
+        print("                   ╚═════╝ ╚══════╝╚══════╝╚═╝      ╚═════╝ ╚══════╝    ╚═════╝  ╚═════╝    ╚═╝   ")
+        print(" ")
+        print("                                                     Console Cleared")
 
 
-#cleverbot stuff
-user = 'cleverbot.io user thing'
-key = 'cleverbot.io key'
+
+#user = 'osmSj0PjSRPKI6fp'
+#key = 'wRQRzsdhgrvo27b6QftQioU9hBais3Lr'
 
 
 
 
 #cleverbot
-@bot.event
-async def on_message(message):
+#@bot.event
+##async def on_message(message):
 
-    if message.content.startswith('<@509012657890918430>'):
-        await bot.send_typing(message.channel)
-        txt = message.content.replace(message.server.me.mention,'') if message.server else message.content
-        r = json.loads(requests.post('https://cleverbot.io/1.0/ask', json={'user':user, 'key':key, 'nick':'Useful Bot', 'text':txt}).text)
-        if r['status'] == 'success':
-            embed = discord.Embed(description=r['response'])
-            await bot.send_message(message.channel, embed=embed)
-            
-    else:
-        await bot.process_commands(message)
+#    if message.content.startswith('<@509012657890918430>'):
+#        if message.author.id == '402237660648964096':
+#            pass
+#        elif message.author.id == '347066550098067457':
+#            pass
+#        else:
+#            await bot.send_typing(message.channel)
+#            txt = message.content.replace(message.server.me.mention,'') if message.server else message.content
+#            r = json.loads(requests.post('https://cleverbot.io/1.0/ask', json={'user':user, 'key':key, 'nick':'Useful Bot', 'text':txt}).text)
+#            if r['status'] == 'success':
+#                embed = discord.Embed(description=r['response'])
+#                await bot.send_message(message.channel, embed=embed)
+#            
+#    else:
+#        await bot.process_commands(message)
     
             
 
@@ -112,7 +117,7 @@ async def on_message(message):
 @bot.command(hidden=True, pass_context=True)
 async def load(ctx, extension):
     """Loads a module."""
-    if ctx.message.author.id == 'Your User ID':
+    if ctx.message.author.id == '204721061411946496':
         try:
             bot.load_extension(extension)
 
@@ -127,7 +132,7 @@ async def load(ctx, extension):
 @bot.command(hidden=True, pass_context=True)
 async def unload(ctx, extension):
     """Unloads a module."""
-    if ctx.message.author.id == 'Your User ID':
+    if ctx.message.author.id == '204721061411946496':
         try:
             bot.unload_extension(extension)
 
@@ -142,7 +147,7 @@ async def unload(ctx, extension):
 @bot.command(hidden=True, pass_context=True)
 async def reload(ctx, extension):
     """Reloads a module."""
-    if ctx.message.author.id == 'Your User ID':
+    if ctx.message.author.id == '204721061411946496':
         try:
 
             bot.unload_extension(extention)
@@ -177,5 +182,5 @@ if __name__ == "__main__":
 
 
 
-requests.post('https://cleverbot.io/1.0/create', json={'user':user, 'key':key, 'nick':'Useful Bot'})
-bot.run('Your Token')
+#requests.post('https://cleverbot.io/1.0/create', json={'user':user, 'key':key, 'nick':'Useful Bot'})
+bot.run('NTM4MzgyODAwMjY5ODY5MDY3.Xc8-aA.bbIoF-AuiqEQOK5THFekZIhjlDY')

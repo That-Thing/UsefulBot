@@ -41,6 +41,8 @@ class help:
         embed.add_field(name="!!pfpurl @*someone*", value="Sends a link to the user's profile picture", inline=True)
         embed.add_field(name='!!listbans', value="Lists all the banned users in the server", inline=True)
         embed.add_field(name='!!servers', value="Shows how many servers the bot is on", inline=True)
+        embed.add_field(name='!!define', value="Get a defenition of a word from Urban Dictionary", inline=True)
+        embed.add_field(name='!!iminfo', value="Information about a user put nicely in an image", inline=True)
         await self.bot.send_message(author, embed=embed)
         embed = discord.Embed(title="Command List 3: @user Commands", colour=random.choice(colors))
         embed.add_field(name='!!hug *user*', value='Hugs someone') 
@@ -66,6 +68,7 @@ class help:
         embed.add_field(name='!!dog', value='Sends a dog', inline=True)
         embed.add_field(name='!!snek', value='Sends a snek', inline=True)
         embed.add_field(name='!!meme', value='Sends a meme', inline=True)
+        embed.add_field(name='!!senko', value='Sends a senko', inline=True)
         await self.bot.send_message(author, embed=embed)
 
         embed = discord.Embed(title="Command List 6: Misc Commands", colour=random.choice(colors))

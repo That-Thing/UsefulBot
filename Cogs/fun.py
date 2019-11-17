@@ -11,11 +11,20 @@ import utils
 import fortune
 import subprocess
 
-
+#os.environ['FORTUNE_FILE'] = "/home/pi/Desktop/UB/FORTUNE_FILE/fortunes.txt"
  
 class fun:
     def __init__(self, bot):
         self.bot = bot
+
+
+    # async def randomimageapi(self, ctx, url, endpoint):
+    #     try:
+    #         r = await http.get(url, res_method="json", no_cache=True)
+    #     except json.JSONDecodeError:
+    #         return await ctx.send("Nothing from the API. fuck.")
+
+    #     await ctx.send(r[endpoint])
 
 
 
