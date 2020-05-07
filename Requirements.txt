@@ -1,4 +1,4 @@
-discord.py
+discord.py==0.16.12
 pyfiglet
 asyncio
 praw
@@ -6,16 +6,5 @@ utils
 json
 time
 random
-pylint
 
 urbandictionary (Download from PyPi and then replace urbandictionary.py with the one from the github repo https://github.com/bocong/urbandictionary-py)
-
-
-
-
-
-
-
-
-
-Some of these are installed by default 
