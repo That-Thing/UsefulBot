@@ -20,7 +20,7 @@ class help(commands.Cog):
 
         colors = [0xff0000, 0xff8100, 0xfdff00, 0x15ff00, 0x15ff00, 0x0045ff, 0x9600ff, 0xff00b4]
 
-        embed = discord.Embed(title="Useful Bot Commads", colour=random.choice(colors))
+        embed = discord.Embed(title="Useful Bot Commands", colour=random.choice(colors))
         embed.set_author(name='Command List 1: Mod Commands')
         embed.add_field(name='!!ping', value='Pong!', inline=False)   
         embed.add_field(name='!!kick', value='Kicks a member', inline=False)
