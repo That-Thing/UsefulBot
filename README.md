@@ -1,4 +1,4 @@
-<h1 style='color:red'>This branch is no longer maintained. branch can be found <a stc='https://github.com/That-
+<h1 style='color:red'>This branch is no longer maintained. branch can be found <a src='https://github.com/That-
 Thing/UsefulBot/tree/rewrite'>here</a></h1>
 
 <h1>Useful Bot</h1>
