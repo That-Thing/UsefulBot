@@ -7,7 +7,7 @@ from pyfiglet import figlet_format, FontNotFound
 
 
 
-class text:
+class text(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -18,65 +18,48 @@ class text:
 
 
     @commands.command()
-    async def big(self, *, text):
-            await self.bot.say("```fix\n" + figlet_format(text, font="big") + "```")
+    async def big(self, ctx, *, text):
+            await ctx.send("```fix\n" + figlet_format(text, font="big") + "```")
 
     @commands.command()
-    async def banner(self, *, text):
-            await self.bot.say("```fix\n" + figlet_format(text, font="banner") + "```")
-
-
-    @commands.command()
-    async def bigchief(self, *, text):
-            await self.bot.say("```fix\n" + figlet_format(text, font="bigchief") + "```")
+    async def banner(self, ctx, *, text):
+            await ctx.send("```fix\n" + figlet_format(text, font="banner") + "```")
 
 
     @commands.command()
-    async def block(self, *, text):
-            await self.bot.say("```fix\n" + figlet_format(text, font="block") + "```")
-
+    async def bigchief(self, ctx, *, text):
+            await ctx.send("```fix\n" + figlet_format(text, font="bigchief") + "```")
 
 
     @commands.command()
-    async def broadway(self, *, text):
-            await self.bot.say("```fix\n" + figlet_format(text, font="broadway") + "```")
+    async def block(self, ctx, *, text):
+            await ctx.send("```fix\n" + figlet_format(text, font="block") + "```")
 
 
 
     @commands.command()
-    async def bubble(self, *, text):
-            await self.bot.say("```fix\n" + figlet_format(text, font="bubble") + "```")
+    async def broadway(self, ctx, *, text):
+            await ctx.send("```fix\n" + figlet_format(text, font="broadway") + "```")
+
 
 
     @commands.command()
-    async def cyberlarge(self, *, text):
-            await self.bot.say("```fix\n" + figlet_format(text, font="cyberlarge") + "```")
-
-    @commands.command()
-    async def cybersmall(self, *, text):
-            await self.bot.say("```fix\n" + figlet_format(text, font="cybersmall") + "```")
+    async def bubble(self, ctx, *, text):
+            await ctx.send("```fix\n" + figlet_format(text, font="bubble") + "```")
 
 
     @commands.command()
-    async def doom(self, *, text):
-            await self.bot.say("```fix\n" + figlet_format(text, font="doom") + "```")
+    async def cyberlarge(self, ctx, *, text):
+            await ctx.send("```fix\n" + figlet_format(text, font="cyberlarge") + "```")
+
+    @commands.command()
+    async def cybersmall(self, ctx, *, text):
+            await ctx.send("```fix\n" + figlet_format(text, font="cybersmall") + "```")
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    @commands.command()
+    async def doom(self, ctx, *, text):
+            await ctx.send("```fix\n" + figlet_format(text, font="doom") + "```")
 
 
 
@@ -84,7 +67,7 @@ class text:
 
 
     @commands.command()
-    async def fancy(self, *, text):
+    async def fancy(self, text, ctx):
 
             def strip_non_ascii(string):
                 stripped = (c for c in string if 0 < ord(c) < 127)
@@ -92,7 +75,7 @@ class text:
 
             text = strip_non_ascii(text)
             if len(text.strip()) < 1:
-                return await self.bot.say("Use only ASCII characters.")
+                return await ctx.send("Only use ASCII characters.")
             output = ""
             for letter in text:
                 if 65 <= ord(letter) <= 90:
@@ -101,7 +84,7 @@ class text:
                     output += chr(ord(letter) + 119919)
                 elif letter == " ":
                     output += " "
-            await self.bot.say(output)
+            await ctx.send(str(output))
 
 
 

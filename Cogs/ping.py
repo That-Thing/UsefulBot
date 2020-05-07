@@ -1,10 +1,9 @@
 import discord
 from discord.ext import commands
 from discord.ext.commands import Bot
-import asyncio
 import time
 
-class ping:
+class ping(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -13,9 +12,9 @@ class ping:
     @commands.cooldown(rate=1, per=2.0)
     async def ping(self, ctx):
         pingtime = time.time()
-        pingms = await self.bot.say("*Pinging...*")
+        message = await ctx.send("*Pinging...*")
         ping = (time.time() - pingtime) * 1000
-        await self.bot.edit_message(pingms, "**Pong!** :ping_pong:  ``%dms``" % ping)
+        await message.edit(content="**Pong!** :ping_pong:  ``%dms``" % ping)
         
 
 

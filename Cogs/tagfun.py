@@ -1,12 +1,12 @@
 import discord
 from discord.ext import commands
 from discord.ext.commands import Bot
-import asyncio
 import os
 import random
-
-
-class tagfun:
+import requests
+import json
+colors = [0xff00e7, 0xff00c1, 0xe141ff, 0xf417d5, 0xff0074, 0xbd00ff]
+class tagfun(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -17,11 +17,9 @@ class tagfun:
     @commands.cooldown(rate=1, per=2.0)
     async def shoot(self, ctx, user: discord.Member):  
 
-        colors = [0xff0000, 0xff8100, 0xfdff00, 0x15ff00, 0x15ff00, 0x0045ff, 0x9600ff, 0xff00b4]
-
         embed = discord.Embed(name="You've been shot.", color=random.choice(colors))
         embed.add_field(name="{}:gun:   you were shot, you will probably bleed out and die.".format(user.name), value='shot by {}'.format(ctx.message.author.name), inline=True) 
-        await self.bot.say(embed=embed)
+        await ctx.send(embed=embed)
 
 
 #shoot someone
@@ -29,17 +27,67 @@ class tagfun:
     @commands.cooldown(rate=1, per=2.0)
     async def stab(self, ctx, user: discord.Member):  
 
-        colors = [0xff0000, 0xff8100, 0xfdff00, 0x15ff00, 0x15ff00, 0x0045ff, 0x9600ff, 0xff00b4]
-
         embed = discord.Embed(name="You've been shot.", color=random.choice(colors))
         embed.add_field(name=":dagger:{}  You were stabbed. Go to a hospital.".format(user.name), value= 'stabbed by {}'.format(ctx.message.author.name), inline=True) 
-        await self.bot.say(embed=embed)
+        await ctx.send(embed=embed)
 
-
-
-
-
-
+#and here comes the holy grail of APIs. Thank you nekos.life for making such a wonderful collection of images. 
+    @commands.command()
+    @commands.cooldown(rate=1, per=2.0)
+    async def slap(self, ctx, user: discord.Member):
+        response = requests.get("https://nekos.life/api/v2/img/slap")
+        data = response.json()
+        embed = discord.Embed(description="{} was slapped by {}".format(user.name, ctx.message.author.name), color=random.choice(colors))
+        embed.set_image(url=data["url"])
+        await ctx.send(embed=embed)
+    @commands.command()
+    @commands.cooldown(rate=1, per=2.0)
+    async def hug(self, ctx, user: discord.Member):
+        response = requests.get("https://nekos.life/api/v2/img/hug")
+        data = response.json()
+        embed = discord.Embed(description="{} was hugged by {}".format(user.name, ctx.message.author.name), color=random.choice(colors))
+        embed.set_image(url=data["url"])
+        await ctx.send(embed=embed)
+    @commands.command()
+    @commands.cooldown(rate=1, per=2.0)
+    async def pat(self, ctx, user: discord.Member):
+        response = requests.get("https://nekos.life/api/v2/img/pat")
+        data = response.json()
+        embed = discord.Embed(description="{} was patted by {}".format(user.name, ctx.message.author.name), color=random.choice(colors))
+        embed.set_image(url=data["url"])
+        await ctx.send(embed=embed)
+    @commands.command()
+    @commands.cooldown(rate=1, per=2.0)
+    async def kiss(self, ctx, user: discord.Member):
+        response = requests.get("https://nekos.life/api/v2/img/kiss")
+        data = response.json()
+        embed = discord.Embed(description="{} was kissed by {}".format(user.name, ctx.message.author.name), color=random.choice(colors))
+        embed.set_image(url=data["url"])
+        await ctx.send(embed=embed)
+    @commands.command()
+    @commands.cooldown(rate=1, per=2.0)
+    async def spank(self, ctx, user: discord.Member):
+        response = requests.get("https://nekos.life/api/v2/img/spank")
+        data = response.json()
+        embed = discord.Embed(description="{} was spanked by {}".format(user.name, ctx.message.author.name), color=random.choice(colors))
+        embed.set_image(url=data["url"])
+        await ctx.send(embed=embed)
+    @commands.command()
+    @commands.cooldown(rate=1, per=2.0)
+    async def cudde(self, ctx, user: discord.Member):
+        response = requests.get("https://nekos.life/api/v2/img/cuddle")
+        data = response.json()
+        embed = discord.Embed(description="{} cuddles with {}".format(ctx.message.author.name, user.name), color=random.choice(colors))
+        embed.set_image(url=data["url"])
+        await ctx.send(embed=embed)
+    @commands.command()
+    @commands.cooldown(rate=1, per=2.0)
+    async def poke(self, ctx, user: discord.Member):
+        response = requests.get("https://nekos.life/api/v2/img/poke")
+        data = response.json()
+        embed = discord.Embed(description="{} was poked by {}".format(user.name, ctx.message.author.name), color=random.choice(colors))
+        embed.set_image(url=data["url"])
+        await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(tagfun(bot))

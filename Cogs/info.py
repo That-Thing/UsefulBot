@@ -1,7 +1,6 @@
 import discord
 from discord.ext import commands
 from discord.ext.commands import Bot
-import asyncio
 import json
 import os 
 import random
@@ -18,13 +17,13 @@ from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
  
-class info:
+class info(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
 
 
-
+#server info
     @commands.command(pass_context=True)
     @commands.cooldown(rate=1, per=2.0)
     async def sinfo(self, ctx):
@@ -33,31 +32,31 @@ class info:
 
 
         online = 0
-        for i in ctx.message.server.members:
+        for i in ctx.message.guild.members:
             if str(i.status) == 'online' or str(i.status) == 'idle' or str(i.status) == 'dnd':
                 online += 1
     
 
-        emoji_count = len(ctx.message.server.emojis)
+        emoji_count = len(ctx.message.guild.emojis)
 
-        embed = discord.Embed(name="{}'s Information".format(ctx.message.server.name), description="Here is this server's info.", color=random.choice(colors))
+        embed = discord.Embed(name="{}'s Information".format(ctx.message.guild.name), description="Here is this guild's info.", color=random.choice(colors))
         embed.set_author(name="Server Information")
-        embed.add_field(name="Name of Server", value=ctx.message.server.name, inline=True)
-        embed.add_field(name='Owner', value=ctx.message.server.owner, inline=True)
-        embed.add_field(name='Members', value=ctx.message.server.member_count, inline=True)
+        embed.add_field(name="Name of server", value=ctx.message.guild.name, inline=True)
+        embed.add_field(name='Owner', value=ctx.message.guild.owner, inline=True)
+        embed.add_field(name='Members', value=ctx.message.guild.member_count, inline=True)
         embed.add_field(name='Members Online', value=online)
-        embed.add_field(name="Roles in Server", value=len(ctx.message.server.roles), inline=True) 
-        embed.add_field(name='Highest role', value=ctx.message.server.role_hierarchy[0])
+        embed.add_field(name="Roles in Server", value=len(ctx.message.guild.roles), inline=True) 
+        embed.add_field(name='Highest role', value=ctx.message.guild.roles[0])
         embed.add_field(name='Number of Emojis', value=str(emoji_count))
-        embed.add_field(name='Server Created', value='{}'.format(ctx.message.server.created_at.strftime('%m/%d/%Y %H:%M:%S')))
-        embed.add_field(name='Verification Level', value=str(ctx.message.server.verification_level), inline=True)
-        embed.add_field(name="ID of Server", value=ctx.message.server.id, inline=True)
+        embed.add_field(name='Server Created', value='{}'.format(ctx.message.guild.created_at.strftime('%m/%d/%Y %H:%M:%S')))
+        embed.add_field(name='Verification Level', value=str(ctx.message.guild.verification_level), inline=True)
+        embed.add_field(name="ID of Server", value=ctx.message.guild.id, inline=True)
         embed.set_footer(text="Requested by {}".format(ctx.message.author))
-        embed.set_thumbnail(url=ctx.message.server.icon_url)
-        await self.bot.say(embed=embed)
+        embed.set_thumbnail(url=ctx.message.guild.icon_url)
+        await ctx.send(embed=embed)
 
 
-
+#user info
     @commands.command(pass_context=True)
     @commands.cooldown(rate=1, per=2.0)
     async def info(self, ctx, user: discord.Member):
@@ -75,34 +74,34 @@ class info:
         embed.add_field(name="User ID", value=user.id, inline=True)
         embed.set_footer(text="Requested by {}".format(ctx.message.author))
         embed.set_thumbnail(url=user.avatar_url)
-        await self.bot.say(embed=embed)  
+        await ctx.send(embed=embed)  
 
     
     
     
     
-    
+#user pfp
     @commands.command(pass_context=True)
     @commands.cooldown(rate=1, per=2.0)
     async def pfp(self, ctx, user: discord.Member):
         embed = discord.Embed()
         embed.set_image(url=user.avatar_url)
-        await self.bot.say(embed=embed)
+        await ctx.send(embed=embed)
 
     
     
     
     
     
-    
+#url to user pfp
     @commands.command(pass_context=True)
     @commands.cooldown(rate=1, per=2.0)
     async def pfpurl(self, ctx, user: discord.Member):
-        await self.bot.say(user.avatar_url)
+        await ctx.send(user.avatar_url)
 
 
 
-
+#info on the bot
     @commands.command(pass_context=True)
     @commands.cooldown(rate=1, per=2.0)
     async def botinfo(self, ctx):
@@ -112,69 +111,53 @@ class info:
         embed = discord.Embed(title="Information on Useful Bot", description="Here's the bot info", color=random.choice(colors))
         embed.add_field(name="Name of Bot", value='<@509012657890918430>', inline=True)
         embed.add_field(name="Name of Programmer", value='<@204721061411946496>', inline=True)
-        # embed.add_field(name="People Who Helped", value='<@368860954227900416>', inline=True)
-        embed.add_field(name="Library", value='Discord.py', inline=True)
-        #embed.add_field(name="Support Server", value='https://discord.gg/PEqVQCu', inline=True)
+        embed.add_field(name="Library", value='Discord.py Rewrite', inline=True)
         embed.add_field(name="Avatar URL", value=self.bot.user.avatar_url, inline=True)
         embed.add_field(name="Bot User ID", value=self.bot.user.id, inline=True)
         embed.set_footer(text="Requested by {}".format(ctx.message.author))
 
 
         embed.set_thumbnail(url=self.bot.user.avatar_url)
-        await self.bot.say(embed=embed)
+        await ctx.send(embed=embed)
 
 
 
-
+#time in EST
     @commands.command(pass_context=True)
     @commands.cooldown(rate=1, per=2.0)
     async def time(self, ctx):
-        await self.bot.say('Date is: **{0}**\nTime is: **{1}**'.format(time.strftime("%A, %B %d, %Y"), time.strftime("%I:%M:%S %p")))
+        await ctx.send('Date is: **{0}**\nTime is: **{1}**'.format(time.strftime("%A, %B %d, %Y"), time.strftime("%I:%M:%S %p")))
 
 
-
+#list banned users in the server
     @commands.command(pass_context=True, aliases=['lb', 'listban'])
     @commands.cooldown(rate=1, per=2.0)
     async def listbans(self, ctx):
+        guild = ctx.message.guild
         colors = [0xff0000, 0xff8100, 0xfdff00, 0x15ff00, 0x15ff00, 0x0045ff, 0x9600ff, 0xff00b4]
-        x = await self.bot.get_bans(ctx.message.server)
-        x = '\n'.join([y.name for y in x])
-        embed = discord.Embed(title="List of Banned Members", description=x, colour=random.choice(colors))
-        return await self.bot.say(embed=embed)
+        bans = await guild.bans()
+        embed = discord.Embed(title="List of Banned Members", description=guild.name, colour=random.choice(colors))
+        for i in bans:
+            embed.add_field(name="Name", value=i[1].name, inline=False)
+            embed.add_field(name="ID", value=i[1].id, inline=False)
+            embed.add_field(name="** **", value="** **", inline=False)
+        return await ctx.send(embed=embed)
 
-                
+#list how many servers the bot is in
     @commands.command()
     @commands.cooldown(rate=1, per=2.0)
-    async def servers(self):
-        await self.bot.say("Being useful on " + str(len(self.bot.servers)) + " servers.")
-
-
-    @commands.command(pass_context=True)
-    @commands.cooldown(rate=1, per=2.0)
-    async def youtube(self, ctx, *, name):
-
-            data = urllib.request.urlopen("https://www.googleapis.com/youtube/v3/channels?part=statistics&forUsername="+name+"&key="+ 'AIzaSyB6Y8CrhCv6fCLaBn3x4lkUqPPgrdxIR0g').read()
-            subs = json.loads(data)["items"][0]["statistics"]["subscriberCount"]
-            views = json.loads(data)["items"][0]["statistics"]["viewCount"]
-            vids = json.loads(data)["items"][0]["statistics"]["videoCount"]
-
-            # Generate embed and say
-            embed=discord.Embed(color=0xff0000)
-            embed.add_field(name="Subscribers:", value="{:,d}".format(int(subs)), inline=False)
-            embed.add_field(name="Total views:", value="{:,d}".format(int(views)), inline=False)
-            embed.add_field(name="Total videos:", value="{:,d}".format(int(vids)), inline=False)
-            embed.set_thumbnail(url="https://s.ytimg.com/yts/mobile/img/apple-touch-icon-144x144-precomposed-vflopw1IA.png")
-            embed.set_footer(text="requested by {}".format(ctx.message_author))
-            await self.bot.say(embed=embed)
+    async def servers(self, ctx):
+        await ctx.send("Being useful on " + str(len(self.bot.guilds)) + " servers.")
 
 
 
+#send a link to the emoji
     @commands.command()
     @commands.cooldown(rate=1, per=2.0)
-    async def emoji(self, emoji: discord.Emoji):
+    async def emoji(self, ctx, emoji: discord.Emoji):
         embed=discord.Embed()
         embed.set_image(url=emoji.url)
-        await self.bot.say(embed=embed)
+        await ctx.send(embed=embed)
         
 
 
@@ -188,11 +171,13 @@ class info:
 
     @commands.command()
     @commands.cooldown(rate=1, per=2.0)
-    async def define(self, *args): #defines from urban dictionary
+    async def define(self, ctx, *args): #defines from urban dictionary
         output = ""
         for word in args:
+            word = str(word)
             output += word
             output += ' '
+            output = output
         defined = ud.define(output)
         deflist = []
         uselist = []
@@ -204,27 +189,27 @@ class info:
         if len(deflist) == 0:
             embed = discord.Embed(description=output, color=0xff0000)
             embed.add_field(name='Not Found ', value="Try checking your spelling or something")
-            await self.bot.say(embed=embed)
+            await ctx.send(embed=embed)
         else:
             try:
                 embed = discord.Embed(description=output, color=0x00ff00)
                 embed.add_field(name='Defenition: ', value=deflist[0], inline=False)
                 embed.add_field(name='Usage: ', value=uselist[0], inline=False)
                 #embed.set_footer(text="upvotes: "+ upvotelist[0] + " | downvotes: " + downvotelist[0])
-                await self.bot.say(embed=embed)
+                await ctx.send(embed=embed)
             except Exception:
                 try:
                     embed = discord.Embed(description=output, color=0x00ff00)
                     embed.add_field(name='Defenition: ', value=deflist[1], inline=False)
                     embed.add_field(name='Usage: ', value=uselist[1], inline=False)
                     #embed.set_footer(text="upvotes: "+ upvotelist[0] + " | downvotes: " + downvotelist[0])
-                    await self.bot.say(embed=embed)
+                    await ctx.send(embed=embed)
                 except Exception:
                     embed = discord.Embed(description=output, color=0x00ff00)
                     embed.add_field(name='Defenition: ', value=deflist[2], inline=False)
                     embed.add_field(name='Usage: ', value=uselist[2], inline=False)
                     #embed.set_footer(text="upvotes: "+ upvotelist[0] + " | downvotes: " + downvotelist[0])
-                    await self.bot.say(embed=embed)
+                    await ctx.send(embed=embed)
 
 
     @commands.command(pass_context=True, aliases=['imin', 'iminfo'])
@@ -250,7 +235,7 @@ class info:
         draw.text((50, 450), "User's Top Role:{}".format(user.top_role), (255, 249, 173), font=font) 
         draw.text((50, 500), "User Joined:{}".format(user.joined_at), (255, 249, 173), font=font) 
         img.save('tmp.png')
-        await self.bot.upload("tmp.png")
+        await ctx.send(file=discord.File("tmp.png", user.name+".png"))
 
 
 
