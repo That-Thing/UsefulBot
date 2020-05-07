@@ -1,5 +1,5 @@
 <h1>This branch is no longer maintained. branch can be found <a href='https://github.com/That-
-Thing/UsefulBot/tree/rewrite'>here</a></h1>
+Thing/UsefulBot'>here</a></h1>
 
 <h1>Useful Bot</h1>
 <h2>Uses the non-rewritten discord.py</h2>
