@@ -28,7 +28,7 @@ class mod(commands.Cog):
     @commands.command(pass_context=True)
     @commands.cooldown(rate=1, per=2.0)
     @commands.has_permissions(ban_members=True)
-    async def kick(self, ctx, userName: discord.User):
+    async def ban(self, ctx, userName: discord.User):
         colors = [0xff0000, 0xff8100, 0xfdff00, 0x15ff00, 0x15ff00, 0x0045ff, 0x9600ff, 0xff00b4]
         guild = ctx.message.guild
         try:
