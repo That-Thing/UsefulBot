@@ -7,13 +7,6 @@ import random
 import requests
 
 
- 
-#MASSIVE LIST OF SHIT TO FIX AND ADD
-#fancy in text
-#some all of mod
-#more NSFW in images
-
-
 
 
 

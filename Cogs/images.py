@@ -8,7 +8,7 @@ import json
 #god i hate reddit
 reddit = praw.Reddit(
        client_id='f7HwhXzMPI6oLQ',
-       client_secret='rb2AyXMM5BVE_sY9hsMCsS8cRgw',
+       client_secret='SECRET HERE',
        user_agent='discord:com.sen.usefulbot:v1 (by Sen)')
 
 class images(commands.Cog):
@@ -77,6 +77,26 @@ class images(commands.Cog):
             submission = next(x for x in Sneks_submissions if not x.stickied)
         embed=discord.Embed(description='Senko:')
         embed.set_image(url=submission.url)
+        await ctx.send(embed=embed)
+
+
+
+
+#remove background from image
+    @commands.command(alias=["removebg"])
+    async def removeBG(self, ctx):
+        url = "https://removal.ai/wp-admin/admin-ajax.php"
+        headers = {
+            "referer":"https://removal.ai/upload/"
+        }
+        imageUrl = ctx.message.attachments[0].url
+        data = {
+            "link":imageUrl,
+            "action":"file_upload_url"
+        }
+        r = requests.post(url, data=data, headers=headers).json()
+        embed = discord.Embed()
+        embed.set_image(url=r["download"])
         await ctx.send(embed=embed)
 
 

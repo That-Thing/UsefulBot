@@ -28,7 +28,7 @@ class mod(commands.Cog):
     @commands.command(pass_context=True)
     @commands.cooldown(rate=1, per=2.0)
     @commands.has_permissions(ban_members=True)
-    async def kick(self, ctx, userName: discord.User):
+    async def ban(self, ctx, userName: discord.User):
         colors = [0xff0000, 0xff8100, 0xfdff00, 0x15ff00, 0x15ff00, 0x0045ff, 0x9600ff, 0xff00b4]
         guild = ctx.message.guild
         try:
@@ -100,6 +100,38 @@ class mod(commands.Cog):
                     await self.bot.change_nickname(userName, output)
                 except discord.Forbidden:
                     await ctx.send("I don't have perms for that  ")
+
+#    @commands.command(pass_context = True)
+#    @commands.cooldown(rate=1, per=2.0)
+#    async def unban(self, ctx, user_id):
+#        ban_list = await self.bot.get_bans(ctx.message.server)
+#        banned = await client.get_user_info(user_id)
+#        
+#        
+#        
+#    @commands.command(pass_context = True)
+#    @commands.cooldown(rate=1, per=2.0)
+#    async def bans(self, ctx):
+#        ban_list = await self.bot.get_bans(ctx.message.server)
+#        embed = discord.Embed(title="Banned Members", description=.join([user.name for user in ban_list])
+#        await ctx.send(embed=embed)
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             
 
