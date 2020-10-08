@@ -67,14 +67,13 @@ class tagfun(commands.Cog):
     @commands.command()
     @commands.cooldown(rate=1, per=2.0)
     async def spank(self, ctx, user: discord.Member):
-        response = requests.get("https://nekos.life/api/v2/img/spank")
-        data = response.json()
+        fucktonOfLinks = ["https://i.imgur.com/V0LMJkt.gif", "https://i.imgur.com/SnZ8Szh.gif", "https://i.imgur.com/jzJyCJp.gif", "https://i.imgur.com/BZDfN8b.gif", "https://i.imgur.com/9DMPdIV.gif", "https://i.imgur.com/j90b50B.gif", "https://i.imgur.com/JyjwigU.gif"] #God forgive me for this atrocity. 
         embed = discord.Embed(description="{} was spanked by {}".format(user.name, ctx.message.author.name), color=random.choice(colors))
-        embed.set_image(url=data["url"])
+        embed.set_image(url=random.choice(fucktonOfLinks))
         await ctx.send(embed=embed)
     @commands.command()
     @commands.cooldown(rate=1, per=2.0)
-    async def cudde(self, ctx, user: discord.Member):
+    async def cuddle(self, ctx, user: discord.Member):
         response = requests.get("https://nekos.life/api/v2/img/cuddle")
         data = response.json()
         embed = discord.Embed(description="{} cuddles with {}".format(ctx.message.author.name, user.name), color=random.choice(colors))
