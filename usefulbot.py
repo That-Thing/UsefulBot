@@ -71,6 +71,63 @@ async def cls(ctx):
         print("                                                     Console Cleared")
 
 
+def checkExisting(serverID):
+    with open('settings.json') as data:
+        servers = json.load(data)
+    idCheck = False
+    for x in servers["servers"]:
+        currID = x['id']
+        if currID == serverID:
+            idCheck = True
+    return idCheck
+
+#Every time the bot joins a new server the bot checks if the server config already exists and if not, creates a new config. 
+@bot.event
+async def on_guild_join(guild):
+    with open('settings.json') as data:
+        Jsettings = json.load(data)
+    if checkExisting(guild.id) == False:
+        toAppend = {
+            "id":guild.id,
+            "level":"on"
+        }
+        Jsettings["servers"].append(toAppend)
+        with open('settings.json', "w") as f:
+            f.write(json.dumps(Jsettings, indent=4, sort_keys=True))
+    else:
+        pass
+
+
+@bot.command()
+async def check(ctx):
+    if ctx.message.author.id == 204721061411946496:
+        with open('settings.json') as data:
+            Jsettings = json.load(data)
+        Jsettings["servers"][0].append("x")   
+        with open('settings.json', "w") as f:
+            f.write(json.dumps(Jsettings, indent=4, sort_keys=True))
+        print(Jsettings["servers"][0])
+
+@bot.command()
+async def addservers(ctx):
+    if ctx.message.author.id == 204721061411946496:
+        with open("settings.json") as data:
+            Jsettings = json.load(data)
+        serverCheck = False
+        for x in bot.guilds:
+            if checkExisting(x.id) == False:
+                guildID = x.id
+                toAppend = {
+                    "id":guildID,
+                    "level":"on"
+                }
+                Jsettings["servers"].append(toAppend)
+                with open('settings.json', "w") as f:
+                    f.write(json.dumps(Jsettings, indent=4, sort_keys=True))
+        print("servers added.")
+        with open('settings.json', "w") as f:
+            f.write(json.dumps(Jsettings, indent=4, sort_keys=True))
+
 
 
 @bot.command(hidden=True, pass_context=True)
