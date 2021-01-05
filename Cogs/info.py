@@ -239,6 +239,26 @@ class info(commands.Cog):
 
 
 
+    @commands.command()
+    @commands.cooldown(rate=1, per=2.0)
+    async def catfact(self,ctx):
+        url = "https://some-random-api.ml/facts/cat"
+        response = requests.get(url)
+        data = response.json()
+        embed = discord.Embed(description="Cat Fact")
+        embed.add_field(name="Cat Fact", value=data["fact"])
+        await ctx.send(embed=embed)
+    @commands.command()
+    @commands.cooldown(rate=1, per=2.0)
+    async def dogfact(self,ctx):
+        url = "https://some-random-api.ml/facts/dog"
+        response = requests.get(url)
+        data = response.json()
+        embed = discord.Embed(description="Dog Fact")
+        embed.add_field(name="Dog Fact", value=data["fact"])
+        await ctx.send(embed=embed)
+
+
 
 
 

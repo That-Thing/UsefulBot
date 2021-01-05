@@ -8,7 +8,7 @@ class ping(commands.Cog):
         self.bot = bot
 
 
-    @commands.command(pass_context=True, aliases=['Ping'])
+    @commands.command(pass_context=True)
     @commands.cooldown(rate=1, per=2.0)
     async def ping(self, ctx):
         pingtime = time.time()

@@ -33,7 +33,7 @@ class mod(commands.Cog):
         guild = ctx.message.guild
         try:
             await guild.ban(userName)
-            embed=discord.Embed(title="Kick", description="{} Has been banned from {}.".format (userName.name, ctx.message.guild.name), color=random.choice(colors))
+            embed=discord.Embed(title="Ban", description="{} Has been banned from {}.".format (userName.name, ctx.message.guild.name), color=random.choice(colors))
             embed.set_footer(text="Requested by {}".format(ctx.message.author))
             await ctx.send(embed=embed)
         except discord.Forbidden:

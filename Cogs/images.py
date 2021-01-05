@@ -5,10 +5,13 @@ import random
 import praw
 import requests
 import json
+import PIL
+from PIL import Image
+import urllib.request
 #god i hate reddit
 reddit = praw.Reddit(
        client_id='f7HwhXzMPI6oLQ',
-       client_secret='SECRET HERE',
+       client_secret='rb2AyXMM5BVE_sY9hsMCsS8cRgw',
        user_agent='discord:com.sen.usefulbot:v1 (by Sen)')
 
 class images(commands.Cog):
@@ -18,6 +21,7 @@ class images(commands.Cog):
 
 
     @commands.command()
+    @commands.cooldown(rate=1, per=2.0)
     async def meme(self, ctx):
         memes_submissions = reddit.subreddit('memes').hot()
         post_to_pick = random.randint(1, 100)
@@ -28,6 +32,7 @@ class images(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command()
+    @commands.cooldown(rate=1, per=2.0)
     async def cat(self, ctx):
         response = requests.get("https://api.thecatapi.com/v1/images/search")
         data = response.json()
@@ -36,6 +41,7 @@ class images(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command()
+    @commands.cooldown(rate=1, per=2.0)
     async def dog(self, ctx):
         response = requests.get("https://dog.ceo/api/breeds/image/random")
         data = response.json()
@@ -53,7 +59,22 @@ class images(commands.Cog):
         await ctx.send(embed=embed)
 
 
+    @commands.command(alias=["birb", "burb"])
+    @commands.cooldown(rate=1, per=2.0)
+    async def bird(self,ctx):
+        url = "https://some-random-api.ml/img/birb"
+        response = requests.get(url)
+        data = response.json()
+        embed = discord.Embed(description="Bird")
+        embed.set_image(url=data["link"])
+        await ctx.send(embed=embed)
+
+
+
+
+
     @commands.command()
+    @commands.cooldown(rate=1, per=2.0)
     async def snek(self, ctx):
         Sneks_submissions = reddit.subreddit('Sneks').hot()
         post_to_pick = random.randint(1, 100)
@@ -70,6 +91,7 @@ class images(commands.Cog):
 #weebshit
 
     @commands.command()
+    @commands.cooldown(rate=1, per=2.0)
     async def senko(self, ctx):
         Sneks_submissions = reddit.subreddit('SewayakiKitsune').hot()
         post_to_pick = random.randint(1, 100)
@@ -82,24 +104,41 @@ class images(commands.Cog):
 
 
 
-#remove background from image
-    @commands.command(alias=["removebg"])
-    async def removeBG(self, ctx):
-        url = "https://removal.ai/wp-admin/admin-ajax.php"
-        headers = {
-            "referer":"https://removal.ai/upload/"
-        }
+#remove background from image 
+#Doesn't work anymore :/
+    # @commands.command(alias=["removebg"])
+    # async def removeBG(self, ctx):
+    #     url = "https://removal.ai/wp-admin/admin-ajax.php"
+    #     headers = {
+    #         "referer":"https://removal.ai/upload/"
+    #     }
+    #     imageUrl = ctx.message.attachments[0].url
+    #     data = {
+    #         "link":imageUrl,
+    #         "action":"file_upload_url"
+    #     }
+    #     r = requests.post(url, data=data, headers=headers).json()
+    #     embed = discord.Embed()
+    #     embed.set_image(url=r["download"])
+    #     await ctx.send(embed=embed)
+
+
+
+
+    @commands.command()
+    @commands.cooldown(rate=1, per=2.0)
+    async def upscale(self, ctx):
         imageUrl = ctx.message.attachments[0].url
-        data = {
-            "link":imageUrl,
-            "action":"file_upload_url"
-        }
-        r = requests.post(url, data=data, headers=headers).json()
+        r = requests.post(
+            "https://api.deepai.org/api/waifu2x",
+            data={
+                'image': imageUrl,
+            },
+            headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'}
+        ).json()
         embed = discord.Embed()
-        embed.set_image(url=r["download"])
+        embed.set_image(url=r["output_url"])
         await ctx.send(embed=embed)
-
-
 
 def setup(bot):
     bot.add_cog(images(bot))
