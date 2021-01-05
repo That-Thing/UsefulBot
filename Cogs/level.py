@@ -135,7 +135,7 @@ class level(commands.Cog):
             toAppend = {
                 "id":currentID,
                 "level":1, 
-                "xp":0
+                "xp":1
             }
             users["users"].append(toAppend)
             with open('users.json', "w") as f:
