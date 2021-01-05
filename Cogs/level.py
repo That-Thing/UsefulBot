@@ -108,17 +108,6 @@ class level(commands.Cog):
         await ctx.send(file=discord.File("Leveltmp.png", ctx.message.author.name+".png"))
 
 
-
-
-    @commands.command()
-    async def testcmd(self, ctx):
-            img = Image.open("levelup.jpg")
-            draw = ImageDraw.Draw(img)
-            font = ImageFont.truetype("Zector.otf", 37)
-            draw.text((132, 5), "500" , (39,39,39), font=font)
-            draw.text((310, 5), "500" , (39,39,39), font=font)
-            img.save('LevelupTemp.png')
-            await ctx.send(file=discord.File("LevelupTemp.png", ctx.message.author.name+".png"))
 #Using the image level check command because it looks nice(tm)
     # @commands.command()
     # async def level(self, ctx):
