@@ -65,6 +65,7 @@ class help(commands.Cog):
         embed.add_field(name='!!doom *text*', value='Turns your text into the doom font', inline=False)
         await author.send(embed=embed)
         embed = discord.Embed(title="Command List 5: Images", colour=random.choice(colors))
+        embed.add_field(name='!!removeBG *image*', value='Removes the background of an image. ', inline=False)
         embed.add_field(name='!!cat', value='Sends a cat', inline=False)
         embed.add_field(name='!!dog', value='Sends a dog', inline=False)
         embed.add_field(name='!!snek', value='Sends a snek', inline=False)

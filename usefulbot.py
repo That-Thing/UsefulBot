@@ -31,7 +31,9 @@ extentions = [
 'gif',
 'text',
 'images',
-'nsfw'
+'nsfw',
+'level',
+'settings'
 ]
 
 print('loading')
