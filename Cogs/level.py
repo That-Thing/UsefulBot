@@ -202,7 +202,7 @@ class level(commands.Cog):
                         if checkSettings(message.guild.id) == "on":
                             file = discord.File("LevelupTemp.png", "levelupimage.png")
                             embed = discord.Embed(title=message.author.name + " has leveled up!", desciption=message.author.name + "has leveled up!")
-                            embed.set_image(url="attachment://" + "levelupimage.png.png")
+                            embed.set_image(url="attachment://" + "levelupimage.png")
                             embed.set_footer(text=message.author)
                             await message.channel.send(file=file, embed=embed)
 
