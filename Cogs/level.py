@@ -110,9 +110,9 @@ class level(commands.Cog):
             draw.text((x, 150), str(level) , (color), font=fontL)
             draw.text(((500-text_width)/2, 265), str(xp)+"/"+str(5*(level**2)+30*level+30) , (39,39,39), font=fontS)
             img.save('Leveltmp.png')
-            file=discord.File("Leveltmp.png", ctx.message.author.name+".png")
+            file=discord.File("Leveltmp.png", "sheeeeit.png")
             embed = discord.Embed(title="Level " + str(level), desciption="Level " + str(level) + " | XP: " + str(xp)+"/"+str(5*(level**2)+30*level+30), color=embedColor)
-            embed.set_image(url="attachment://" + ctx.message.author.name+".png")
+            embed.set_image(url="attachment://" + "sheeeeit.png")
             embed.set_footer(text=ctx.message.author.name + " | XP: " + str(xp)+"/"+str(5*(level**2)+30*level+30))
             await ctx.send(file=file, embed=embed)
         else:
@@ -147,9 +147,9 @@ class level(commands.Cog):
             draw.text((x, 150), str(level) , (color), font=fontL)
             draw.text(((500-text_width)/2, 265), str(xp)+"/"+str(5*(level**2)+30*level+30) , (39,39,39), font=fontS)
             img.save('Leveltmp.png')
-            file=discord.File("Leveltmp.png", user.name+".png")
+            file=discord.File("Leveltmp.png", "level.png")
             embed = discord.Embed(title="Level " + str(level), desciption="Level " + str(level) + " | XP: " + str(xp)+"/"+str(5*(level**2)+30*level+30), color=embedColor)
-            embed.set_image(url="attachment://" + user.name+".png")
+            embed.set_image(url="attachment://" + "level.png")
             embed.set_footer(text=user.name + " | XP: " + str(xp)+"/"+str(5*(level**2)+30*level+30))
             await ctx.send(file=file, embed=embed)
 
@@ -200,9 +200,9 @@ class level(commands.Cog):
                         f.write(json.dumps(users, indent=4, sort_keys=True))
                     if levelUp(x['xp'], currentID) == True:
                         if checkSettings(message.guild.id) == "on":
-                            file = discord.File("LevelupTemp.png", message.author.name+".png")
+                            file = discord.File("LevelupTemp.png", "levelupimage.png")
                             embed = discord.Embed(title=message.author.name + " has leveled up!", desciption=message.author.name + "has leveled up!")
-                            embed.set_image(url="attachment://" + message.author.name+".png")
+                            embed.set_image(url="attachment://" + "levelupimage.png.png")
                             embed.set_footer(text=message.author)
                             await message.channel.send(file=file, embed=embed)
 
