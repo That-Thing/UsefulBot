@@ -9,6 +9,7 @@ Useful bot has all sorts of commands including:<br>
   <li>User commands (!!shoot {user}, !!slap {user}, !!hug {user}, etc.</li>
   <li>Text commands (different fonts for text)</li>
   <li>Image commands (!!cat, !!meme, etc.)</li>
+  <li>A level system</li>
 </ul>
 
 This bot is still in development, and if you encounter any problems feel free to shoot me a DM.
