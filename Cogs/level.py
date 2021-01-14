@@ -86,10 +86,10 @@ class level(commands.Cog):
                     xp = x['xp']
             color= 102,165,106
             embedColor = 0x66a56a
-            x=0
+            x = 220
             #cringe. 
             if level < 10:
-                x=235
+                x = 235
             elif level >= 50 and level < 100:
                 color=160,165,102
                 embedColor = 0xa0a566
@@ -110,9 +110,9 @@ class level(commands.Cog):
             draw.text((x, 150), str(level) , (color), font=fontL)
             draw.text(((500-text_width)/2, 265), str(xp)+"/"+str(5*(level**2)+30*level+30) , (39,39,39), font=fontS)
             img.save('Leveltmp.png')
-            file=discord.File("Leveltmp.png", "sheeeeit.png")
+            file=discord.File("Leveltmp.png", "Leveltemp.png")
             embed = discord.Embed(title="Level " + str(level), desciption="Level " + str(level) + " | XP: " + str(xp)+"/"+str(5*(level**2)+30*level+30), color=embedColor)
-            embed.set_image(url="attachment://" + "sheeeeit.png")
+            embed.set_image(url="attachment://" + "Leveltemp.png")
             embed.set_footer(text=ctx.message.author.name + " | XP: " + str(xp)+"/"+str(5*(level**2)+30*level+30))
             await ctx.send(file=file, embed=embed)
         else:
