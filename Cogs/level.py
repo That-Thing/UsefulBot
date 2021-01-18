@@ -123,7 +123,7 @@ class level(commands.Cog):
                     xp = x['xp']
             color= 102,165,106
             embedColor = 0x66a56a
-            x=0
+            x = 220
             #cringe. 
             if level < 10:
                 x=235
