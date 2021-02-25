@@ -50,7 +50,7 @@ class settings(commands.Cog):
                 try:
                     reaction, user = await self.bot.wait_for('reaction_add', timeout=60.0, check=check)
                 except asyncio.TimeoutError:
-                    await ctx.send('👎')
+                    await ctx.send('Timed out')
                 else:
 
                     if str(reaction.emoji) == '<:yes:791842528366034954>':
