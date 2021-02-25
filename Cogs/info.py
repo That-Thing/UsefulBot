@@ -257,12 +257,16 @@ class info(commands.Cog):
         embed = discord.Embed(description="Dog Fact")
         embed.add_field(name="Dog Fact", value=data["fact"])
         await ctx.send(embed=embed)
-
-
-
-
-
-
+        
+    @commands.command()
+    @commands.cooldown(rate=1, per=2.0)
+    async def fortune(self,ctx):
+        url = "https://api.neko.airforce/api/fortune"
+        response = requests.get(url)
+        data = response.json()
+        embed = discord.Embed(description="Fortune")
+        embed.add_field(name="Fortune", value=data["fortune"])
+        await ctx.send(embed=embed)
 
 
 def setup(bot):

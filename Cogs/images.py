@@ -51,8 +51,7 @@ class images(commands.Cog):
 
     @commands.command()
     async def neko(self,ctx):
-        urls  = ["https://nekos.life/api/v2/img/ngif", "https://nekos.life/api/v2/img/neko"]
-        response = requests.get(random.choice(urls))
+        response = requests.get("https://api.neko.airforce/api/neko")
         data = response.json()
         embed = discord.Embed(description="Neko")
         embed.set_image(url=data["url"])
@@ -100,31 +99,6 @@ class images(commands.Cog):
         embed=discord.Embed(description='Senko:')
         embed.set_image(url=submission.url)
         await ctx.send(embed=embed)
-
-
-
-
-#remove background from image 
-#Doesn't work anymore :/
-    # @commands.command(alias=["removebg"])
-    # async def removeBG(self, ctx):
-    #     url = "https://removal.ai/wp-admin/admin-ajax.php"
-    #     headers = {
-    #         "referer":"https://removal.ai/upload/"
-    #     }
-    #     imageUrl = ctx.message.attachments[0].url
-    #     data = {
-    #         "link":imageUrl,
-    #         "action":"file_upload_url"
-    #     }
-    #     r = requests.post(url, data=data, headers=headers).json()
-    #     embed = discord.Embed()
-    #     embed.set_image(url=r["download"])
-    #     await ctx.send(embed=embed)
-
-
-
-
     @commands.command()
     @commands.cooldown(rate=1, per=2.0)
     async def upscale(self, ctx):

@@ -55,6 +55,7 @@ class settings(commands.Cog):
 
                     if str(reaction.emoji) == '<:yes:791842528366034954>':
                         changeLevel("on", ctx.message.guild.id)
+                        print("changed status to ON")
                         await ctx.send("Changed to **On**")
                     if str(reaction.emoji) == '<:no:791842503849410590>':
                         changeLevel("off", ctx.message.guild.id)

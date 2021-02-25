@@ -16,20 +16,30 @@ class tagfun(commands.Cog):
     @commands.command(pass_context=True)
     @commands.cooldown(rate=1, per=2.0)
     async def shoot(self, ctx, user: discord.Member):  
-
-        embed = discord.Embed(name="You've been shot.", color=random.choice(colors))
-        embed.add_field(name="{}:gun:   you were shot, you will probably bleed out and die.".format(user.name), value='shot by {}'.format(ctx.message.author.name), inline=True) 
-        await ctx.send(embed=embed)
+        if user.id == 483026011882258446:
+            usr = await self.bot.fetch_user(804007711800295506)
+            embed = discord.Embed(name="You've been shot.", color=random.choice(colors))
+            embed.add_field(name=usr.name + ":gun:   you were shot, you will probably bleed out and die.".format(user.name), value='shot by {}'.format(ctx.message.author.name), inline=True) 
+            await ctx.send(embed=embed)
+        else:
+            embed = discord.Embed(name="You've been shot.", color=random.choice(colors))
+            embed.add_field(name="{}:gun:   you were shot, you will probably bleed out and die.".format(user.name), value='shot by {}'.format(ctx.message.author.name), inline=True) 
+            await ctx.send(embed=embed)
 
 
 #shoot someone
     @commands.command(pass_context=True)
     @commands.cooldown(rate=1, per=2.0)
     async def stab(self, ctx, user: discord.Member):  
-
-        embed = discord.Embed(name="You've been shot.", color=random.choice(colors))
-        embed.add_field(name=":dagger:{}  You were stabbed. Go to a hospital.".format(user.name), value= 'stabbed by {}'.format(ctx.message.author.name), inline=True) 
-        await ctx.send(embed=embed)
+        if user.id == 483026011882258446:
+            usr = await self.bot.fetch_user(804007711800295506)
+            embed = discord.Embed(name="You've been shot.", color=random.choice(colors))
+            embed.add_field(name=":dagger:"+ usr.name +"  You were stabbed. Go to a hospital.", value= 'stabbed by {}'.format(ctx.message.author.name), inline=True) 
+            await ctx.send(embed=embed)
+        else:
+            embed = discord.Embed(name="You've been shot.", color=random.choice(colors))
+            embed.add_field(name=":dagger:{}  You were stabbed. Go to a hospital.".format(user.name), value= 'stabbed by {}'.format(ctx.message.author.name), inline=True) 
+            await ctx.send(embed=embed)
 
 #and here comes the holy grail of APIs. Thank you nekos.life for making such a wonderful collection of images. 
     @commands.command()
@@ -87,6 +97,5 @@ class tagfun(commands.Cog):
         embed = discord.Embed(description="{} was poked by {}".format(user.name, ctx.message.author.name), color=random.choice(colors))
         embed.set_image(url=data["url"])
         await ctx.send(embed=embed)
-
 def setup(bot):
     bot.add_cog(tagfun(bot))

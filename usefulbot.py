@@ -5,17 +5,14 @@ import json
 import os 
 import random
 import requests
+import time
+import asyncio
 
-
-
-
-
-
-
-    
+intents = discord.Intents.default()
+intents.members = True
 
 #bot prefix
-bot = commands.Bot(command_prefix = '!!')
+bot = commands.Bot(command_prefix = '!!', case_insensitive=True, intents=intents)
 bot.remove_command('help')
 
 
@@ -69,7 +66,6 @@ async def cls(ctx):
         print("                   ╚═════╝ ╚══════╝╚══════╝╚═╝      ╚═════╝ ╚══════╝    ╚═════╝  ╚═════╝    ╚═╝   ")
         print(" ")
         print("                                                     Console Cleared")
-
 
 def checkExisting(serverID):
     with open('settings.json') as data:
@@ -129,7 +125,6 @@ async def addservers(ctx):
             f.write(json.dumps(Jsettings, indent=4, sort_keys=True))
 
 
-
 @bot.command(hidden=True, pass_context=True)
 async def load(ctx, extension):
     """Loads a module."""
@@ -165,10 +160,10 @@ async def reload(ctx, extension):
     """Reloads a module."""
     if ctx.message.author.id == 204721061411946496:
         try:
-
-            bot.unload_extension(extention)
+            bot.unload_extension(extension)
+            print("Unloaded")
             bot.load_extension(extension)
-
+            print("Loaded")
             colors = [0xff0000, 0xff8100, 0xfdff00, 0x15ff00, 0x15ff00, 0x0045ff, 0x9600ff, 0xff00b4]
 
             embed = discord.Embed(name='Reloaded', color=random.choice(colors))
@@ -176,6 +171,39 @@ async def reload(ctx, extension):
             await ctx.send(embed=embed)
         except Exception as error:
             print("{} Can't be fucking reloaded. [{}]".format(extension, error))
+
+
+
+snipe_message_author = {}
+snipe_message_content = {}
+
+@bot.event
+async def on_message_delete(message):
+     snipe_message_author[message.channel.id] = message.author
+     snipe_message_content[message.channel.id] = message.content
+     await asyncio.sleep(60)
+     del snipe_message_author[message.channel.id]
+     del snipe_message_content[message.channel.id]
+
+
+#not my code lol. 
+@bot.command(name = 'snipe')
+async def snipe(ctx):
+    channel = ctx.channel
+    try: #This piece of code is run if the bot finds anything in the dictionary
+        em = discord.Embed(name = f"Last deleted message in #{channel.name}", description = snipe_message_content[channel.id])
+        em.set_footer(text = f"This message was sent by {snipe_message_author[channel.id]}")
+        await ctx.send(embed = em)
+    except: #This piece of code is run if the bot doesn't find anything in the dictionary
+        await ctx.send(f"There are no recently deleted messages in #{channel.name}")
+
+
+#If the bot sends the embed, but it's empty, it simply means that the deleted message was either a media file or another embed.
+
+
+
+
+
 
 
 
@@ -188,4 +216,4 @@ if __name__ == "__main__":
         except Exception as error:
             print("{} couldn't be loaded, something fucked up! [{}]".format(extention, error))
 
-bot.run('Token')
+bot.run('TOKEN')

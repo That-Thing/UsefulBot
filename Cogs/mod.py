@@ -101,24 +101,6 @@ class mod(commands.Cog):
                 except discord.Forbidden:
                     await ctx.send("I don't have perms for that  ")
 
-#    @commands.command(pass_context = True)
-#    @commands.cooldown(rate=1, per=2.0)
-#    async def unban(self, ctx, user_id):
-#        ban_list = await self.bot.get_bans(ctx.message.server)
-#        banned = await client.get_user_info(user_id)
-#        
-#        
-#        
-#    @commands.command(pass_context = True)
-#    @commands.cooldown(rate=1, per=2.0)
-#    async def bans(self, ctx):
-#        ban_list = await self.bot.get_bans(ctx.message.server)
-#        embed = discord.Embed(title="Banned Members", description=.join([user.name for user in ban_list])
-#        await ctx.send(embed=embed)
-    
-    
-
-
 
 
 
