@@ -218,22 +218,23 @@ class info(commands.Cog):
         draw = ImageDraw.Draw(img)
         font = ImageFont.truetype("MavenPro-Bold.ttf", 25)
         fontbig = ImageFont.truetype("yeyey.otf", 150)
- 
+        fillColor = 102,165,106
+        strokeColor = 7,7,7
         #    (x,y)::↓ ↓ ↓ (text)::↓ ↓     (r,g,b)::↓ ↓ 
         if len(user.name) > 9:
             fontbig = ImageFont.truetype("yeyey.otf", 70)
-            draw.text((20, 0), user.name, (255, 249, 173), font=fontbig)
+            draw.text((20, 0), user.name, fill=fillColor, stroke_width=1, stroke_fill=strokeColor,  font=fontbig)
         else:
             fontbig = ImageFont.truetype("yeyey.otf", 150)
-            draw.text((20, 0), user.name, (255, 249, 173), font=fontbig) #draws Information
-        draw.text((50, 150), '{}'.format( '(a bot)' if user.bot else '(not a bot)'),  (255, 249, 173), font=font)
-        draw.text((50, 200), "Username: {}".format(user.name), (255, 249, 173), font=font)
-        draw.text((50, 250), "ID:  {}".format(user.id), (255, 249, 173), font=font)
-        draw.text((50, 300), "User Status:{}".format(user.status), (255, 249, 173), font=font)
-        draw.text((50, 350), "Account created: {}".format(user.created_at), (255, 249, 173), font=font)
-        draw.text((50, 400), "Nickname:{}".format(user.display_name), (255, 249, 173), font=font) 
-        draw.text((50, 450), "User's Top Role:{}".format(user.top_role), (255, 249, 173), font=font) 
-        draw.text((50, 500), "User Joined:{}".format(user.joined_at), (255, 249, 173), font=font) 
+            draw.text((20, 0), user.name, fill=fillColor, stroke_width=1, stroke_fill=strokeColor,  font=fontbig) #draws Information
+        draw.text((50, 150), '{}'.format( '(a bot)' if user.bot else '(not a bot)'),  fill=fillColor, stroke_width=1, stroke_fill=strokeColor,  font=font)
+        draw.text((50, 200), "Username: {}".format(user.name), fill=fillColor, stroke_width=1, stroke_fill=strokeColor,  font=font)
+        draw.text((50, 250), "ID:  {}".format(user.id), fill=fillColor, stroke_width=1, stroke_fill=strokeColor,  font=font)
+        draw.text((50, 300), "User Status:{}".format(user.status), fill=fillColor, stroke_width=1, stroke_fill=strokeColor,  font=font)
+        draw.text((50, 350), "Account created: {}".format(user.created_at), fill=fillColor, stroke_width=1, stroke_fill=strokeColor,  font=font)
+        draw.text((50, 400), "Nickname:{}".format(user.display_name), fill=fillColor, stroke_width=1, stroke_fill=strokeColor,  font=font) 
+        draw.text((50, 450), "User's Top Role:{}".format(user.top_role), fill=fillColor, stroke_width=1, stroke_fill=strokeColor,  font=font) 
+        draw.text((50, 500), "User Joined:{}".format(user.joined_at), fill=fillColor, stroke_width=1, stroke_fill=strokeColor,  font=font) 
         img.save('tmp.png')
         await ctx.send(file=discord.File("tmp.png", user.name+".png"))
 
@@ -257,7 +258,33 @@ class info(commands.Cog):
         embed = discord.Embed(description="Dog Fact")
         embed.add_field(name="Dog Fact", value=data["fact"])
         await ctx.send(embed=embed)
-        
+
+
+    # @commands.command(pass_context=True)
+    # async def apfour(self, ctx):
+    #     embed = discord.Embed(title="People who joined before april 4th 2020", description="People who joined before april 4th 2020")
+    #     i = 0
+    #     for member in ctx.guild.members:
+    #         i = i+1
+    #     print(i)
+    #     for member in ctx.guild.members:
+    #         month1 = int(member.joined_at.strftime("%m"))
+    #         day1 = int(member.joined_at.strftime("%d"))
+    #         year1 = member.joined_at.strftime("%Y")
+    #         print(month1)
+    #         print(day1)
+    #         print(year1)
+    #         if int(year1) <= 2020:
+    #             if int(year1) == 2019:
+    #                 embed.add_field(name=member.name, value=member.mention, inline=False)
+    #             elif int(month1) == 4:
+    #                 if int(day1) <= 4:
+    #                     embed.add_field(name=member.name, value=member.mention, inline=False)
+    #             elif int(month1) < 4:
+    #                 embed.add_field(name=member.name, value=member.mention, inline=False)
+    #     await ctx.send(embed=embed)
+              
+
     @commands.command()
     @commands.cooldown(rate=1, per=2.0)
     async def fortune(self,ctx):

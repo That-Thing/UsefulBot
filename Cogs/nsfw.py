@@ -37,6 +37,13 @@ class nsfw(commands.Cog):
         embed.set_image(url=data["url"])
         await ctx.send(embed=embed)
 
+    @commands.command()
+    async def ecchi(self,ctx):
+        response = requests.get('https://api.neko.airforce/api/ecchi')
+        data = response.json()
+        embed = discord.Embed(description="Ecchi")
+        embed.set_image(url=data["url"])
+        await ctx.send(embed=embed)
 
 
 
