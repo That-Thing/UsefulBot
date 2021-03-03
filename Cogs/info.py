@@ -259,32 +259,6 @@ class info(commands.Cog):
         embed.add_field(name="Dog Fact", value=data["fact"])
         await ctx.send(embed=embed)
 
-
-    # @commands.command(pass_context=True)
-    # async def apfour(self, ctx):
-    #     embed = discord.Embed(title="People who joined before april 4th 2020", description="People who joined before april 4th 2020")
-    #     i = 0
-    #     for member in ctx.guild.members:
-    #         i = i+1
-    #     print(i)
-    #     for member in ctx.guild.members:
-    #         month1 = int(member.joined_at.strftime("%m"))
-    #         day1 = int(member.joined_at.strftime("%d"))
-    #         year1 = member.joined_at.strftime("%Y")
-    #         print(month1)
-    #         print(day1)
-    #         print(year1)
-    #         if int(year1) <= 2020:
-    #             if int(year1) == 2019:
-    #                 embed.add_field(name=member.name, value=member.mention, inline=False)
-    #             elif int(month1) == 4:
-    #                 if int(day1) <= 4:
-    #                     embed.add_field(name=member.name, value=member.mention, inline=False)
-    #             elif int(month1) < 4:
-    #                 embed.add_field(name=member.name, value=member.mention, inline=False)
-    #     await ctx.send(embed=embed)
-              
-
     @commands.command()
     @commands.cooldown(rate=1, per=2.0)
     async def fortune(self,ctx):
